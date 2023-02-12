@@ -1,0 +1,113 @@
+//SAYAN SEN SHARMA
+//DATA SCIENCE
+//IMPLEMENT STACK USING ARRAY
+
+
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+//PUSH AN ELEMENT
+int push(int stack[],int n,int top)
+{
+	int x;
+	printf("enter data ");
+	scanf("%d",&x);
+	if(top==n-1)
+	{
+		printf("over flow condition\n");
+	}
+	else
+	{
+		top++;
+		stack[top]=x;
+	}
+	return top;
+}
+//DISPLAY
+int display(int stack[],int n,int top)
+{
+	int i;
+	if(top==-1)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+	    printf("the number:\n");
+	for(i=top;i>=0;i--)
+	{
+		printf("%d\n",stack[i]);
+	}
+	}
+	return 0;
+}
+//POP AN ELEMENT
+int pop(int stack[],int n,int top)
+{
+	int item;
+	if(top==-1)
+	{
+		printf("undreflow condition\n");
+	}
+	else
+	{
+		item=stack[top];
+		top--;
+		printf("the pop element be: %d\n",item);
+	}
+	return top;
+}
+//PEEK AN ELEMENT
+int peek(int stack[],int n,int top)
+{
+	int item;
+		if(top==-1)
+	{
+		printf("undreflow condition\n");
+	}
+	else
+	{
+		item=stack[top];
+		printf("the peek element be: %d\n",item);
+	}
+	return top;
+}
+int main()
+{
+	int n;
+	int choice;
+	printf("enter the number of element\n");
+	scanf("%d",&n);
+	int stack[n];
+	int top=-1;
+	while(1)
+	{
+		printf("enter 1 for push\n");
+		printf("enter 2 for pop\n");
+		printf("enter 3 for display\n");
+		printf("enter 4 for peek\n");
+		printf("enter 5 for exit\n");
+		printf("enter your choice ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:top=push(&stack[0],n,top);
+			break;
+			case 2:top=pop(&stack[0],n,top);
+			break;
+			case 3:display(&stack[0],n,top);
+            break;
+			case 4:top=peek(&stack[0],n,top);
+			break;
+			case 5:exit(1);
+			break;
+			default:
+			break;    	
+		}
+	}
+	return 0;
+}
