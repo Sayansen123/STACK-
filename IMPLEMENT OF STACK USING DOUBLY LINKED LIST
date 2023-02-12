@@ -1,0 +1,155 @@
+//SAYAN SEN SHARMA
+//DATA SCIENCE
+//IMPLEMENT OF STACK USING DOUBLY LINKED LIST
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+	{
+	int data;
+	struct node*next;
+	struct node*prev;
+    };
+    //get node
+    struct node* getnode()
+    {
+    	struct node*node;
+    	node=(struct node*)malloc(sizeof(struct node));
+    	if(node==NULL)
+    	{
+    		printf("overflow condition\n");
+		}
+		else
+		{
+			return node;
+		}
+	}
+	//push
+struct node* push(struct node*top)
+{
+	struct node *newnode;
+	newnode=getnode();
+	printf("enter data ");
+	scanf("%d",&newnode->data);
+	if(top==NULL)
+	{
+	newnode->next=top;
+	top=newnode;
+}
+else
+{
+	newnode->next=top;
+	top->prev=newnode;
+	top=newnode;
+}
+	return top;
+}
+//display
+struct node* display(struct node*top)
+{
+	struct node *temp;
+	temp=top;
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("the number:\n");
+		while(temp!=NULL)
+		{
+			printf("%d\n",temp->data);
+	        temp=temp->next;
+		}
+	}
+	return top;
+}
+//checking
+struct node* check(struct node*head)
+{
+	struct node *temp;
+	temp=head;
+	while(temp->next!=NULL)
+	{
+		temp=temp->next;
+	 }
+	  while(temp!=NULL)
+	{
+	printf("%d\n",temp->data);
+	temp=temp->prev; 
+}
+return head;
+}
+//pop
+struct node* pop(struct node*top)
+{
+	struct node *temp;
+	temp=top;
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else if(top->next==NULL)
+	{
+		top=top->next;
+		free(temp);
+	}
+	else
+	{
+		printf("the pop element be:%d\n",top->data);
+		top=top->next;
+		top->prev=NULL;
+		free(temp);
+	}
+	return top;
+}
+//peak
+struct node* peak(struct node*top)
+{
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("the peak element be:%d\n",top->data);
+	}
+	return top;
+}
+int main()
+{
+	struct node *top=NULL;
+	int choice;
+		while(1)
+	{
+		printf("enter 1 for push\n");
+		printf("enter 2 for pop\n");
+		printf("enter 3 for display\n");
+		printf("enter 4 for peak\n");
+		printf("enter 5 for exit\n");
+		printf("enter your choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:top=push(top);
+			break;
+			case 2:top=pop(top);
+			break;
+			case 3:top=display(top);
+            break;
+			case 4:top=peak(top);
+			break;
+			case 5:exit(1);
+			break;
+			default:
+			break;    	
+		}
+	}
+	return 0;
+}
