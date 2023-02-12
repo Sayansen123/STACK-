@@ -1,0 +1,119 @@
+//SAYAN SEN SHARMA
+//DATA SCIENCE
+//1ST SEM
+//IMPLEMENT OF QUEUE USING LINKED LIST
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+	{
+	int data;
+	struct node*next;
+    };
+    struct node *rear=NULL;
+    struct node* enque(struct node*front)
+    {
+    	struct node *newnode;
+    	newnode=(struct node*)malloc(sizeof(struct node));
+    	printf("enter data ");
+    	scanf("%d",&newnode->data);
+    	newnode->next=NULL;
+    	if(front==NULL&&rear==NULL)
+    	{
+    		rear=newnode;
+    		front=newnode;
+		}
+		else
+		{
+			rear->next=newnode;
+			rear=newnode;
+		}
+		return front;		
+	}
+	struct node* display(struct node*front)
+	{
+		struct node *temp;
+		if(front==NULL)
+		{
+			printf("the list id empty\n");
+		}
+		else
+		{
+		temp=front;
+		while(temp!=NULL)
+		{
+			printf("%d\n",temp->data);
+	        temp=temp->next; 
+		}
+	}
+	return front;
+	}
+	struct node* deque(struct node*front)
+	{
+		struct node *temp;
+		if(front==NULL)
+		{
+			printf("the list id empty\n");
+		}
+        else
+        {
+        	printf("the deleted element be %d\n",front->data);
+        	temp=front;
+        	front=front->next;
+        	free(temp);
+		}
+		return front;
+	}
+	struct node* peek(struct node*front)
+	{
+			if(front==NULL)
+		{
+			printf("the list id empty\n");
+		}
+        else
+        {
+        	printf("the peeked element be %d\n",front->data);
+        }
+        return front;
+	}
+	int main()
+{
+	struct node *front=NULL;
+	int choice;
+		while(1)
+	{
+		printf("enter 1 for insert a element\n");
+		printf("enter 2 for delete a element\n");
+		printf("enter 3 for display\n");
+		printf("enter 4 for peek\n");
+		printf("enter 5 for exit\n");
+		printf("enter your choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:front=enque(front);
+			break;
+			case 2:front=deque(front);
+			break;
+			case 3:
+			     	printf("the number:\n");
+                	front=display(front);
+            break;
+			case 4:front=peek(front);
+			break;
+			case 5:exit(1);
+			break;
+			default:
+			break;    	
+		}
+	}
+	return 0;
+}
