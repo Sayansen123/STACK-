@@ -1,0 +1,107 @@
+//SAYAN SEN SHARMA
+//DATA SCIENCE
+//1ST SEM
+//IMPLEMENT OF STACK USING LINKED LIST
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+	{
+	int data;
+	struct node*next;
+    };
+//push
+struct node* push(struct node*top)
+{
+	struct node *newnode;
+	newnode=(struct node*)malloc(sizeof(struct node));
+	printf("enter data ");
+	scanf("%d",&newnode->data);
+	newnode->next=top;
+	top=newnode;
+	return top;
+}
+//display
+struct node* display(struct node*top)
+{
+	struct node *temp;
+	temp=top;
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("the number:\n");
+		while(temp!=NULL)
+		{
+			printf("%d\n",temp->data);
+	        temp=temp->next;
+		}
+	}
+	return top;
+}
+//pop
+struct node* pop(struct node*top)
+{
+	struct node *temp;
+	temp=top;
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("the pop element be:%d\n",top->data);
+		top=top->next;
+		free(temp);
+	}
+	return top;
+}
+//peek
+struct node* peek(struct node*top)
+{
+	if(top==NULL)
+	{
+		printf("list is empty\n");
+	}
+	else
+	{
+		printf("the peek element be:%d\n",top->data);
+	}
+	return top;
+}
+int main()
+{
+	struct node *top=NULL;
+	int choice;
+		while(1)
+	{
+		printf("enter 1 for push\n");
+		printf("enter 2 for pop\n");
+		printf("enter 3 for display\n");
+		printf("enter 4 for peek\n");
+		printf("enter 5 for exit\n");
+		printf("enter your choice\n");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:top=push(top);
+			break;
+			case 2:top=pop(top);
+			break;
+			case 3:top=display(top);
+            break;
+			case 4:top=peek(top);
+			break;
+			case 5:exit(1);
+			break;
+			default:
+			break;    	
+		}
+	}
+	return 0;
+}
